@@ -7,7 +7,7 @@ public class MysqlbaseDao {
             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con= DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/sonoo","root","root");
+                    "jdbc:mysql://localhost:3306/dealregister?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","root");
                 return con;
 
         }catch(Exception e){ System.out.println(e);}

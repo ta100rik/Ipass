@@ -18,14 +18,14 @@ public class CustomerMySqlDao extends MysqlbaseDao implements CustomerDao{
         try {
             Statement statement = con.createStatement();
             ResultSet resultSet = null;
-            resultSet = statement.executeQuery("SELECT * FROM customer;");
-            con.close();
+            resultSet = statement.executeQuery("SELECT * FROM customer");
             while (resultSet.next()) {
-                Integer cnumber = resultSet.getInt("code");
+                Integer cnumber = resultSet.getInt("customernumber");
                 String cname = resultSet.getString("customername");
                 Customer new_Customer = new Customer(cnumber,cname);
                 allCustomers.add(new_Customer);
             }
+            con.close();
             return allCustomers;
         } catch (SQLException e) {
             e.printStackTrace();

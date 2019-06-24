@@ -8,4 +8,8 @@ public class Customer {
         this.cname = cname;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
