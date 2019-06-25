@@ -9,7 +9,7 @@ $(document).ready(function() {
         const element = document.getElementById("loginForm");
         const formData      = new FormData(element);
         const encodeData    = new URLSearchParams(formData);
-        fetch("Rest_Service/login", {
+        fetch("api/users", {
             method: 'POST',
             body: encodeData
         }).then(function(response) {

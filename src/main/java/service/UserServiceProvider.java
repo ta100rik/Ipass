@@ -10,4 +10,7 @@ public class UserServiceProvider {
     public List<Users> getUsers(){
         return UD.getAllUsers();
     }
+    public String Login(String username){
+        return UD.Login(username);
+    }
 }

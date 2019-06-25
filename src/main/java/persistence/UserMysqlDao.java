@@ -3,10 +3,7 @@ package persistence;
 import baseDao.MysqlbaseDao;
 import domain.Users;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,5 +30,24 @@ public class UserMysqlDao extends MysqlbaseDao implements UserDao {
         e.printStackTrace();
     }
         return allUsers;
+   }
+   public String Login(String username){
+       Connection con = super.getConnection();
+       try {
+           Statement statement = con.createStatement();
+           PreparedStatement st = con.prepareStatement("SELECT Wachtwoord FROM users where email = ? limit 1 ");
+           st.setString(1,username);
+           ResultSet resultSet = st.executeQuery();
+
+           while (resultSet.next()) {
+               String Wachtwoord = resultSet.getString("Wachtwoord");
+               return Wachtwoord;
+           }
+           super.closeConn(con);
+           return "";
+       } catch(SQLException e) {
+           e.printStackTrace();
+       }
+       return "";
    }
 }
