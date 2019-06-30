@@ -8,5 +8,6 @@ public class ServiceProvider {
         return CSP;
     }
     public static UserServiceProvider getUserServiceProvider(){return USP;}
+    public static DealServiceProvider getDealServiceProvider(){return DSP;}
 
 }
