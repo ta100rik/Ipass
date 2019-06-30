@@ -14,14 +14,13 @@ public class UserMysqlDao extends MysqlbaseDao implements UserDao {
     try {
         Statement statement = con.createStatement();
         ResultSet resultSet = null;
-        resultSet = statement.executeQuery("SELECT * FROM users");
+        resultSet = statement.executeQuery("SELECT * FROM users join rollen on users.rol = rollen.Rolid ");
         while (resultSet.next()) {
 
-            Integer id = resultSet.getInt("id");
+            int id = resultSet.getInt("id");
             String email = resultSet.getString("email");
-            String Rol = resultSet.getString("Rol");
-            String Wachtwoord = resultSet.getString("Wachtwoord");
-            Users new_user = new Users(id,email,Rol,Wachtwoord);
+            String Rolnaam = resultSet.getString("Rolnaam");
+            Users new_user = new Users(id,email,Rolnaam);
             allUsers.add(new_user);
         }
         con.close();
@@ -50,4 +49,27 @@ public class UserMysqlDao extends MysqlbaseDao implements UserDao {
        }
        return "";
    }
+    public Users getUserData(String username){
+        Connection con = super.getConnection();
+        try {
+            Statement statement = con.createStatement();
+            PreparedStatement st = con.prepareStatement("SELECT * FROM users join rollen on users.rol = rollen.Rolid where users.email =  ? limit 1 ");
+            st.setString(1,username);
+            ResultSet resultSet = st.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String email = resultSet.getString("email");
+                String Rolnaam = resultSet.getString("Rolnaam");
+                Users new_user = new Users(id,email,Rolnaam);
+                return new_user;
+            }
+            super.closeConn(con);
+            return null;
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
 }

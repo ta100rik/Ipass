@@ -13,4 +13,5 @@ public class UserServiceProvider {
     public String Login(String username){
         return UD.Login(username);
     }
+    public Users getUserData(String username){return UD.getUserData(username);}
 }

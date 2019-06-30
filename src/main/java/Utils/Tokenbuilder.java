@@ -19,7 +19,9 @@ public class Tokenbuilder {
                 .setIssuer("localhost")
                 .setSubject("userlogin")
                 .setExpiration(expiration.getTime())
-                .claim("role","")
+                .claim("id",users.getId())
+                .claim("role",users.getRol())
+                .claim("username",users.getEmail())
                 .signWith(SignatureAlgorithm.HS512,key)
                 .compact();
         return JWT;

@@ -4,7 +4,18 @@ $(document).ready(function() {
 		event.preventDefault();
 		login();
 	});
+	checklogin();
 });
+function checklogin(){
+    let token = sessionStorage.getItem("token");
+    let login = document.getElementById("loginbox");
+    console.log(checklogin());
+    if(token){
+        window.location.href = "Homepage.html";
+    }else{
+        window.location.href = "index.html";
+    }
+}
  function login(){
         const element = document.getElementById("loginForm");
         const formData      = new FormData(element);
@@ -17,12 +28,12 @@ $(document).ready(function() {
 
                 return response.text();
             }else{
-                console.log("bad login");
+                $.notify("Username or password is not correct");
             }
         })
             .then(function(myJson) {
                 if(myJson){
-                    localStorage.setItem("token",myJson)
+                    sessionStorage.setItem("token",myJson)
                     window.location.href  = "Homepage.html";
                 }
             });
