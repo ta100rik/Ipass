@@ -10,4 +10,5 @@ public class DealServiceProvider {
     public List<Deal> getDeals(){
         return DMD.getDeals();
     }
+    public Deal getDeal(String id){return DMD.getDeal(id);};
 }

@@ -56,17 +56,46 @@
                         <div class="content-box-inner">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <table id="dealtable">
-                                        <thead>
-                                            <th>id</th>
-                                            <th>Dealname</th>
-                                            <th>One time benefit</th>
-                                        </thead>
-                                    <tbody id="dealtable_body"></tbody>
-                                </table>
+                                    <form id="dealregisterform">
+                                        
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="row">
+                                                            <label class="col-md-4">Dealname</label>
+                                                            <input class="col-md-8" type="text" class="form-control" name="dealname" id="dealname"  >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="row">
+                                                            <label class="col-md-4">One time benefit:</label>
+                                                            <input class="col-md-8" type="text" class="form-control" name="one_time_benefit" id="one_time_benefit"  >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <table class="table table-responsive">
+                                                        <thead>
+                                                            <th>VPN</th>
+                                                            <th>Purchasing price</th>
+                                                            <th><button class="btn btn-primary" type="button" onclick="addmaterial('#material_body')">Addmaterial</button></th>
+                                                        </thead>
+                                                        <tbody id="material_body">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="row">
+                                                    <button class="btn btn-primary" type="button" onclick="submitform()">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="col-md-1"></div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        </div> <!-- end content box inner -->
-                        </div> <!-- end content box -->
-                    </body>
-                </html>
+                            </div> <!-- end content box inner -->
+                            </div> <!-- end content box -->
+                        </body>
+                    </html>

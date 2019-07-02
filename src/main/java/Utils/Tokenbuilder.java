@@ -22,6 +22,7 @@ public class Tokenbuilder {
                 .claim("id",users.getId())
                 .claim("role",users.getRol())
                 .claim("username",users.getEmail())
+                .claim("vendor",users.getVendor())
                 .signWith(SignatureAlgorithm.HS512,key)
                 .compact();
         return JWT;

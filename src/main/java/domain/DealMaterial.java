@@ -6,8 +6,14 @@ import java.util.List;
 public class DealMaterial {
     private Integer id;
     private String VPN;
-    private Integer purchasing_price;
+    private Float purchasing_price;
     private List<MaterialLineDetails> mld = new ArrayList<MaterialLineDetails>();
+
+    public DealMaterial(Integer id, String VPN, Float purchasing_price) {
+        this.id = id;
+        this.VPN = VPN;
+        this.purchasing_price = purchasing_price;
+    }
 
     public Integer getId() {
         return id;
@@ -25,11 +31,11 @@ public class DealMaterial {
         this.VPN = VPN;
     }
 
-    public Integer getPurchasing_price() {
+    public Float getPurchasing_price() {
         return purchasing_price;
     }
 
-    public void setPurchasing_price(Integer purchasing_price) {
+    public void setPurchasing_price(Float purchasing_price) {
         this.purchasing_price = purchasing_price;
     }
 
@@ -38,6 +44,9 @@ public class DealMaterial {
     }
 
     public void setMld(MaterialLineDetails mld) {
+        this.mld.add(mld);
+    }
+    public void add_details(MaterialLineDetails mld){
         this.mld.add(mld);
     }
 }

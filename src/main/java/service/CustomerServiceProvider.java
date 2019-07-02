@@ -1,6 +1,7 @@
 package service;
 
 import domain.Customer;
+import domain.Deal;
 import persistence.CustomerDao;
 import persistence.CustomerMySqlDao;
 

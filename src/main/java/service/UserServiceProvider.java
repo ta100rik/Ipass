@@ -14,4 +14,7 @@ public class UserServiceProvider {
         return UD.Login(username);
     }
     public Users getUserData(String username){return UD.getUserData(username);}
+    public Boolean updateUser(Users us){return UD.updateUser(us);}
+    public Boolean insertUser(Users us){return UD.insertUser(us);}
+    public Boolean deleteUser(Integer id){return UD.deleteUser(id);}
 }

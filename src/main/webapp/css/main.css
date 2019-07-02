@@ -868,3 +868,8 @@ a.underline:hover {
     color: #aaa;
     text-decoration: underline
 }
+input[readonly].classname{
+  background-color:lightgrey;
+  border: 0;
+  font-size: 1em;
+}

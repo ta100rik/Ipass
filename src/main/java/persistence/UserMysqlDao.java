@@ -72,4 +72,52 @@ public class UserMysqlDao extends MysqlbaseDao implements UserDao {
         return null;
 
     }
+    public Boolean updateUser(Users us){
+        Connection con = super.getConnection();
+        try {
+            Statement statement = con.createStatement();
+            PreparedStatement st = con.prepareStatement("UPDATE users SET email = ?, Rol = ?, vendor = ? WHERE id = ?");
+            st.setString(1,us.getEmail());
+            st.setString(2,us.getRol());
+            st.setString(3,us.getVendor());
+            st.setInt(4,us.getId());
+            int resultSet = st.executeUpdate();
+
+            super.closeConn(con);
+            return true;
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public Boolean insertUser(Users us){
+        Connection con = super.getConnection();
+        try {
+            Statement statement = con.createStatement();
+            PreparedStatement st = con.prepareStatement("INSERT INTO users (email, Rol ,vendor) VALUES (?,?,?)");
+            st.setString(1,us.getEmail());
+            st.setString(2,us.getRol());
+            st.setString(3,us.getVendor());
+            boolean resultSet = st.execute();
+            super.closeConn(con);
+            return resultSet;
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean deleteUser(Integer id){
+        Connection con = super.getConnection();
+        try {
+            Statement statement = con.createStatement();
+            PreparedStatement st = con.prepareStatement("DELETE FROM users where id = ?");
+            st.setInt(1,id);
+            boolean resultSet = st.execute();
+            super.closeConn(con);
+            return true;
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

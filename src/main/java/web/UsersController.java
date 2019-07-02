@@ -21,21 +21,22 @@ public class UsersController {
     private Password PasswordClass = new Password();
     private Tokenbuilder tokenBuilder = new Tokenbuilder(key);
     private UserServiceProvider USP = ServiceProvider.getUserServiceProvider();
+
     @GET
     @Produces("application/json")
-    public String getAllusers(){
+    public String getAllusers() {
         List<Users> Users = USP.getUsers();
         Gson gson = new Gson();
         String result = "{";
         int counter = 0;
         final int totalrowcount = Users.size();
-        for (Users user:Users) {
-            result += "\"" +counter + "\":";
+        for (Users user : Users) {
+            result += "\"" + counter + "\":";
             String json = gson.toJson(user);
             counter++;
-            if(counter == totalrowcount){
-                result += json ;
-            }else{
+            if (counter == totalrowcount) {
+                result += json;
+            } else {
                 result += json + ",";
             }
 //            System.out.println(json);
@@ -44,18 +45,54 @@ public class UsersController {
 //        System.out.println(result);
         return result;
     }
-    @POST
+
+
+
+    @PUT
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response login(@FormParam("username") String username, @FormParam ("password") String password){
-        final String passwordhash = USP.Login(username);
-        final boolean Result = PasswordClass.verifyHash(password,passwordhash);
+    public Response updateuser(@FormParam("ids") Integer id, @FormParam("email") String email,@FormParam("Rol") String Rol,@FormParam("Vendor") String Vendor) {
+
+        String RESULT = "";
+        Users update_user = new Users(id,email,Rol,Vendor);
+        final boolean Result = USP.updateUser(update_user);
         if(Result){
-            Users user = USP.getUserData(username);
-            final String RESULT = tokenBuilder.createUserToken(user);
             return Response.ok(RESULT).build();
         }else{
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
+    }
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response insertUser(@FormParam("ids") Integer id, @FormParam("email") String email,@FormParam("Rol") String Rol,@FormParam("Vendor") String Vendor) {
+
+        Users new_user = new Users(id,email,Rol,Vendor);
+        boolean Result = USP.insertUser(new_user);
+        String RESULT = "succes";
+        return Response.ok(RESULT).build();
 
     }
+    @DELETE
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response Deleteuser(@FormParam("ids") Integer id) {
+        boolean Result = USP.deleteUser(id);
+        String RESULT = "succes";
+        return Response.ok(RESULT).build();
+
+    }
+    @Path("/login")
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response login(@FormParam("username") String username, @FormParam("password") String password) {
+        final String passwordhash = USP.Login(username);
+        final boolean Result = PasswordClass.verifyHash(password, passwordhash);
+        if (Result) {
+            Users user = USP.getUserData(username);
+            final String RESULT = tokenBuilder.createUserToken(user);
+            return Response.ok(RESULT).build();
+        } else {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
+
+    }
+
 }

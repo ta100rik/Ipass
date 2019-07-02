@@ -8,6 +8,4 @@ public class Password {
     public boolean verifyHash(String password, String hash) {
         return BCrypt.checkpw(password, hash);
     }
-
-
 }

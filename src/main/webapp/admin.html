@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js" integrity="sha256-7NgI/5l45Md7VEbs4MGG4HsRoHu+lXKQ/vUK1LvXDps=" crossorigin="anonymous"></script>
+        <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <title>Project</title>
+        <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" />
+        <script type="text/javascript" src="js/script.js"></script>
+    </head>
+    <body class="dashboard">
+        <div id="particles"></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <div class="menu-head">
+                        <a href="#toggle" class="menu-toggle"><i class="icon-menu"></i></a>
+                        <span class="label label-free">Version 0.0.1</span>
+                        <a class="logo" href="#"><span class="sprite s-logo-icon"></span><span class="sprite s-logo"></span></a>
+                        <p class="text-center">
+                        </p>
+                    </div>
+                    <ul class="nav nav-sidebar">
+                        <li class="contracts">
+                            <a href="Homepage.html">
+                                <i class="glyphicon glyphicon-envelope"></i> Deals
+                            </a>
+                        </li>
+                        <li class="contracts">
+                            <a href="Dealregisteren.html">
+                                <i class="glyphicon glyphicon-envelope"></i> Deal registreren
+                            </a>
+                        </li>
+                        <li class="contracts">
+                            <a href="admin.html">
+                                <i class="glyphicon glyphicon-envelope"></i> Admin
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-sidebar">
+                        <li>
+                            <a href="#" onclick="logout()">
+                                <i class="icon-logout"></i>
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h1 class="page-header"><i class="glyphicon glyphicon-unchecked"></i> Deals</h1>
+                    <div class="content-box">
+                        <div class="content-box-inner">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <ul class="nav nav-tabs nav-stacked">
+                                                <li class="active"><a data-toggle="tab" href="#home">Gebruikers</a></li>
+                                                <!-- <li><a data-toggle="tab" href="#menu1">Rollen</a></li> -->
+                                            </ul>
+                                            
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="tab-content">
+                                                <div id="home" class="tab-pane fade in active">
+                                                    <h3>Gebruikers</h3>
+                                                    <button class="btn btn-primary" type="button" onclick="showAddUserBox()">Add user</button>
+                                                    <table id="users">
+                                                        <thead>
+                                                            <th>Email</th>
+                                                            <th>Rol</th>
+                                                            <th>Vendor</th>
+                                                        </thead>
+                                                        <tbody id="usersbody">
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="row usereditbox">
+                                                        <div class="col-md-1"></div>
+                                                        <div class="col-md-10">
+                                                            <form id="useredit">
+                                                                <div class="row">
+                                                                    <label class="col-md-4">Id</label>
+                                                                    <input type="text" id="ids" name="ids" readonly class="col-md-8 form-control">
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-4">Email</label>
+                                                                    <input type="text" id="Email" name="email" class="col-md-8 form-control">
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-4">Rol</label>
+                                                                    <select name="Rol" id="rol" class="col-md-8 form-control">
+                                                                        <option value="1">Admin</option>
+                                                                        <option value="2">Sales</option>
+                                                                        <option value="3">Gebruiker</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-4">Vendor</label>
+                                                                    <input type="text" id="Vendor" name="Vendor" class="col-md-8 form-control">
+                                                                </div>
+                                                                <div class="row">
+                                                                    <button id="usereditbutton" type="button" onclick="updateuser('useredit')" class="btn btn-primary">Save</button>
+                                                                    <button id="deleteitbutton" type="button" onclick="deleteuser('useredit')" class="btn btn-primary">Delete user</button>
+                                                                    
+                                                                    <button id="useraddbutton" type="button" onclick="adduser('useredit')" class="btn btn-primary">Add</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="col-md-1"></div>
+                                                    </div>
+                                                </div>
+                                                <div id="menu1" class="tab-pane fade">
+                                                    <h3>Menu 1</h3>
+                                                    <p>Some content in menu 1.</p>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div> <!-- end content box inner -->
+                            </div> <!-- end content box -->
+                        </body>
+                    </html>
