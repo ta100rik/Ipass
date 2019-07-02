@@ -145,7 +145,7 @@ function deleteuser(selector){
         body: encodeData
     }).then(function(response) {
         if(response.status == 200){
-
+			location.reload();
             return response.text();
         }else{
             $.notify("Username or password is not correct");
