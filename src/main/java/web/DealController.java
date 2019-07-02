@@ -24,6 +24,7 @@ public class DealController {
 
     @GET
     @Produces("application/json")
+//    this function is for a all deals and converting the list received from CSP (DEALSSERVICEPROVIDER) into a json string
     public String getDeal(){
         List<Deal> list = CSP.getDeals();
         Gson gson = new Gson();
@@ -45,6 +46,7 @@ public class DealController {
 //        System.out.println(result);
         return result;
     }
+//    get specifik deal and convert the object to json and return json
     @GET
     @Path("{id}")
     @Produces("application/json")
@@ -55,6 +57,7 @@ public class DealController {
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+//    trying to make the big deal post insertable but didn't worked out because of the parsing in java
     public String addVote(String body) {
 
 //        Gson gson = new Gson();

@@ -4,7 +4,9 @@ import domain.Users;
 import persistence.UserMysqlDao;
 
 import java.util.List;
-
+/*
+ *   here we specify where the User data comes from
+ * */
 public class UserServiceProvider {
     private UserMysqlDao UD = new UserMysqlDao();
     public List<Users> getUsers(){

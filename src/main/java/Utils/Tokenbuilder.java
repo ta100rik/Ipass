@@ -6,7 +6,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.security.Key;
 import java.util.Calendar;
-
+/*
+* small class to build a token maybe later also for checkup etc.
+* */
 public class Tokenbuilder {
     private Key key;
     public Tokenbuilder(Key key){
