@@ -1,6 +1,10 @@
 package web;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
 import domain.Deal;
 import service.CustomerServiceProvider;
 import service.DealServiceProvider;
@@ -11,6 +15,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
+import java.io.StringReader;
 import java.util.List;
 
 @Path("/Deal")
@@ -49,10 +54,13 @@ public class DealController {
         return gson.toJson(deal);
     }
     @POST
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public String insertDeal(@FormParam("amount") List<String> amount,@FormParam("Counter") List<String> counter){
-        System.out.println(amount);
-        System.out.println(counter);
-        return "";
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String addVote(String body) {
+
+//        Gson gson = new Gson();
+//        Deal jsonObject =  gson.from();
+//        System.out.println(jsonObject.getDealname());
+        return "test";
     }
+
 }
